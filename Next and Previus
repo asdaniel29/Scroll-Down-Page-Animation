@@ -1,0 +1,69 @@
+<html>
+<head><title></title>
+</head>
+<body>
+
+<div id="parentContainer"></div>
+
+<div id="next">Next</div>
+<div id="prev">Previous</div>
+
+<script src="jquery-1.11.3.min.js"></script>
+	
+	
+<script>
+
+	$(document).ready(function(){
+		initializeFn();
+	})
+	
+		var currentPage = 1;
+	
+	function initializeFn(){
+		
+		ajaxFn(currentPage);
+		
+		$("#next").off("click").on("click", next);
+		$("#prev").off("click").on("click", previous);
+		
+	}
+	
+	function ajaxFn(num){
+		$.ajax({
+            url: "pages/page_"+num+".html",
+            async: "true",
+            dataType:"html",
+            error: errorFn,
+            success: successFn
+        });
+	}
+	
+	function errorFn(){
+		alert("error");
+	}
+	
+	function successFn(data){
+		$("#parentContainer").html(data);
+		if(currentPage == 3){
+			$("#next").css({"pointer-events":"none","opacity":"0.5"});
+		}
+		if(currentPage == 1){
+			$("#prev").css({"pointer-events":"none","opacity":"0.5"});
+		}
+	}
+	
+	function next(){
+		$("#prev").css({"pointer-events":"auto","opacity":"1"});
+		currentPage = currentPage + 1;
+		ajaxFn(currentPage);
+	}
+	
+	function previous(){
+		$("#next").css({"pointer-events":"auto","opacity":"1"});
+		currentPage = currentPage - 1;
+		ajaxFn(currentPage);
+	}
+	
+</script>
+</body>
+</html>
