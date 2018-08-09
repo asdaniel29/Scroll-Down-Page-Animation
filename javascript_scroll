@@ -1,0 +1,24 @@
+function scrollFunction()
+{
+	
+		var scrl_value = document.documentElement.scrollTop;
+		var section2 = document.getElementById("section3").offsetTop;
+		var dani = document.getElementById("section4").offsetTop;
+		if(scrl_value+200 >= section2)
+		{
+			document.getElementById('div_one').classList.add('div_one_left_one_left');
+			document.getElementById('div_two').classList.add('div_one_left_two_center');
+			document.getElementById('div_three').classList.add('div_one_left_three_right');	
+		}
+		
+		if(scrl_value+200 >= dani)
+		{
+			document.getElementById('div_one_1').classList.add('div_one_left_one_left');
+			document.getElementById('div_two_2').classList.add('div_one_left_two_center');
+			document.getElementById('div_three_3').classList.add('div_one_left_three_right');	
+			//document.getElementById('div_one').classList.remove('div_one_left_one_left');
+//			document.getElementById('div_two').classList.remove('div_one_left_two_center');
+//			document.getElementById('div_three').classList.remove('div_one_left_three_right');
+		}	
+}
+</script>
